@@ -39,3 +39,14 @@ I am going to use the required technologies in the following ways.
 - Ability for a user to click whether or not they have achieved their goal or not.
 - Progress is stored and updated
 
+#Deliverables
+
+##HTML
+For this deliverable, I created the structure of my application with HTML.
+- **HTML** - Three HTML pages in total for 1. login, 2. creating habits and displaying data, and 3. a public page showing realtime data. 
+- **Links** - BY entering a name to begin, you are automatically taken to the habits page. Links are includes to switch between the pages, and a link is included to my github. 
+- **Text** - Text is included as headers to explain context for the habits and public habits pages.
+- **Images** - Images are included for users on the public page. An image is also included in the head.
+- **Login** - An input box for a name is included for login.
+- **Database** - A placeholder for the usernames which will be stored in the database, as well as the current progress for the goals, and the highest streak for each habit.
+- **WebSocket** - A placeholder on the public_habits.html file where users and their public goals will be displayed anytime a user creates a public habit.
