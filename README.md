@@ -39,14 +39,15 @@ I am going to use the required technologies in the following ways.
 - Ability for a user to click whether or not they have achieved their goal or not.
 - Progress is stored and updated
 
-#Deliverables
+# Deliverables
 
-##HTML
+## HTML
 For this deliverable, I created the structure of my application with HTML.
-- **HTML** - Three HTML pages in total for 1. login, 2. creating habits and displaying data, and 3. a public page showing realtime data. 
-- **Links** - BY entering a name to begin, you are automatically taken to the habits page. Links are includes to switch between the pages, and a link is included to my github. 
+- **HTML** - Three HTML pages in total.  1. login page 2. creating habits and displaying data  3. a public page showing realtime data. 
+- **Links** - By entering a name to begin, you are automatically taken to the habits page. Links are includes to switch between the pages, and a link is included to my github. 
 - **Text** - Text is included as headers to explain context for the habits and public habits pages.
-- **Images** - Images are included for users on the public page. An image is also included in the head.
-- **Login** - An input box for a name is included for login.
-- **Database** - A placeholder for the usernames which will be stored in the database, as well as the current progress for the goals, and the highest streak for each habit.
-- **WebSocket** - A placeholder on the public_habits.html file where users and their public goals will be displayed anytime a user creates a public habit.
+- **3rd party service calls** - The login input box is a placeholder for 3rd party service call for user authentication.
+- **Images** - Images are included for users on the public page. An image is also included in the head as a web application logo.
+- **Login** - An input box for a name is included for login. The username is shown on the habits page and shown for habits that are public on the public page.
+- **Database** - The usernames which will be stored in the database, as well as the current progress for the goals, and the highest streak for each habit represent data pulled from the database.
+- **WebSocket** - On the public_habits.html file, users and their public goals will be displayed anytime a user creates a public habit (realtime). 
