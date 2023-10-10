@@ -51,3 +51,6 @@ For this deliverable, I created the structure of my application with HTML.
 - **Login** - An input box for a name is included for login. The username is shown on the habits page and shown for habits that are public on the public page.
 - **Database** - The usernames which will be stored in the database, as well as the current progress for the goals, and the highest streak for each habit represent data pulled from the database.
 - **WebSocket** - On the public_habits.html file, users and their public goals will be displayed anytime a user creates a public habit (realtime). 
+
+## CSS
+I styled the application to look neat for production
