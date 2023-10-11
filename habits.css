@@ -7,3 +7,16 @@
     border-radius: 10px;
     padding: 1em;
 }
+
+.fly-in {
+    animation: fly-from-left 1s ease-out;
+}
+
+@keyframes fly-from-left {
+    0% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }

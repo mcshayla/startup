@@ -11,6 +11,9 @@ h1 {
   border-bottom: solid white thin;
 }
 
+.nav-item a {
+  color: white;
+}
 header {
   display: flex;
   background-color: Thistle;
