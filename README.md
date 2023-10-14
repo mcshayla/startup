@@ -2,7 +2,7 @@
 
 Click Here for [notes.md file:](https://github.com/mcshayla/startup/blob/main/notes.md)
 
-[WebServer](http:https://startup.mcshayla.click/)
+[WebServer](https://startup.mcshayla.click/)
 
 
 # The Habit Startup
