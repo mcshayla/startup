@@ -2,7 +2,7 @@
 
 Click Here for [notes.md file:](https://github.com/mcshayla/startup/blob/main/notes.md)
 
-[WebServer](http://52.207.129.186/)
+[WebServer](http:https://startup.mcshayla.click/)
 
 
 # The Habit Startup
@@ -55,8 +55,8 @@ For this deliverable, I created the structure of my application with HTML.
 ## CSS
 I styled the application to look neat for production
 - **Header, footer, and main** -used flex
-- **navigation elements** - changed the text color to white in header and footer and removed the underlines.
-- **responsive to windo resizing** - elements move with resizing to look good at any size.
+- **navigation elements** - changed the text color to white in header and footer and removed the underlines. A link to my github is visible if you scroll to the footer.
+- **responsive to windo resizing** - elements move with resizing to look good at any size. header and footer only show when there is enough space.
 - **application elements** - split content up with headers and whitespace. made use of transitions for elements appearing on the page. Used bootstrap buttons for styling and background colors to seperate content.
 - **application text content** - an easily readable font throughout. used font weight to create contrast.
 - **appliction images** - adjusted size of images to fit on the 
