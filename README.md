@@ -59,4 +59,4 @@ I styled the application to look neat for production
 - **responsive to windo resizing** - elements move with resizing to look good at any size. header and footer only show when there is enough space.
 - **application elements** - split content up with headers and whitespace. made use of transitions for elements appearing on the page. Used bootstrap buttons for styling and background colors to seperate content.
 - **application text content** - an easily readable font throughout. used font weight to create contrast.
-- **appliction images** - adjusted size of images to fit on the 
+- **appliction images** - adjusted size of images and content images transition onto public page.
