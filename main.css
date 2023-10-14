@@ -1,25 +1,17 @@
 body {
   display: flex;
   flex-direction: column;
+  min-width: 375px; /**/
   font-family: sans-serif;
   text-align: center;
 }
 
-
-h1 {
-  font-size: 24px;
-  border-bottom: solid white thin;
-}
-
-.nav-item a {
-  color: white;
-}
 header {
+  flex: 0 50px;
   display: flex;
-  background-color: Thistle;
+  background-color: lightsteelblue;
   padding: 1em;
   text-align: center;
-  justify-content: space-between;
   border-radius: 10px;
 }
 
@@ -35,7 +27,7 @@ main {
 }
 
 footer {
-  background-color: thistle;
+  background-color: lightsteelblue;
   text-align: end;
   flex: 0 30px;
   padding: .5em;
@@ -43,17 +35,27 @@ footer {
 }
 
 menu {
-  text-align: end;
+  /* text-align: end; */
   list-style: none;
   justify-content: space-around;
   flex-direction: row !important;
   display: flex;
+  flex: 1;
 }
 
 li {
   padding: .5em;
 }
 
+h1 {
+  font-size: 24px;
+  border-bottom: solid white thin;
+}
+
+.nav-item a {
+  color: white;
+  float: right;
+}
 
 
 @media (max-height: 600px) {

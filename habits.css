@@ -1,15 +1,30 @@
 .tit-description {
-    color:mediumpurple;
+    color:black;
 }
 
 .mybox {
-    background-color: wheat;
+    background-color: linen;
     border-radius: 10px;
     padding: 1em;
 }
 
+.inputbox {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1em;
+}
+
 .fly-in {
     animation: fly-from-left 1s ease-out;
+}
+
+legend {
+  font-weight: 100;
+  
+}
+
+p {
+  font-weight: bold;
 }
 
 @keyframes fly-from-left {
