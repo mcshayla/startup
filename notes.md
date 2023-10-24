@@ -86,3 +86,5 @@ p.#name = 'Lie';
 
 alertDisplay('called from main.js');'
 
+*DocumentObjectModel Dom*
+
