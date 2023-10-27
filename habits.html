@@ -9,6 +9,7 @@
 
         <link rel="stylesheet" href="main.css" />
         <link rel="stylesheet" href="habits.css" />
+        
         <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -41,7 +42,7 @@
     <main>
       <div class="players">
         UserName:
-        <span class="player-name">Mystery player</span>
+        <span id="player-name"></span>
         <div> 
             <h3 class="tit-description">Develop A Habit:</h3>
             <p> This is where you can create a new habit to be tracked! You can share and support others, or keep to yourself. You got this!!</p>
@@ -49,14 +50,14 @@
 
 
       </div>
-        <form class="inputbox">
+        <form class="inputbox" onsubmit="habitInput(); return false">
             <ul>
                 <label for="text">New Habit: </label>
-                <input type="text" id="text" name="varText" placeholder="type your habit" required pattern="[A-Za-z\s]*" />
+                <input type="text" id="newHabit" name="varText" placeholder="type your habit" required pattern="[A-Za-z\s]*" />
             </ul>
             <ul>
                 <label for="text">How many times to track this habit? </label>
-                <input type="text" id="text" name="varText" placeholder="type a number" required pattern="[0-9]*" />
+                <input type="text" id="timesTrack" name="varText" placeholder="type a number" required pattern="[0-9]*" />
             </ul>
             <ul>
                 <fieldset>
@@ -66,23 +67,41 @@
                 <label for="private">Private</label>
                 <input type="radio" id="private" name="PP" value="Private" />
             </ul>
-            <ul>
+            <!-- <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="radioOption1" value="option1">
+                <label class="form-check-label" for="radioOption1">
+                  Option 1
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="radioOption2" value="option2">
+                <label class="form-check-label" for="radioOption2">
+                  Option 2
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="radioOption3" value="option3">
+                <label class="form-check-label" for="radioOption3">
+                  Option 3
+                </label>
+              </div> -->
+            <!-- <ul>
                 <div id="user-image">
                     <img width="100" alt="user1" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Flock_of_sheep.jpg" />
-                    <span>SHEEP</span>
+                    <span>SHEEP</span> -->
                <!-- </div> -->
                <!-- <div> -->
-                   <img width="100" alt="user1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg/240px-Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg" />
-                   <span>COW</span>
+                   <!-- <img width="100" alt="user1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg/240px-Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg" />
+                   <span>COW</span> -->
               <!-- </div>
               <div> -->
-                   <img width="100" alt="user1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Pig_farm_Vampula_9.jpg/220px-Pig_farm_Vampula_9.jpg" />
+                   <!-- <img width="100" alt="user1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Pig_farm_Vampula_9.jpg/220px-Pig_farm_Vampula_9.jpg" />
                    <span>PIG</span>
                 </div>
 
                 </fieldset>
-            </ul>
-            <ul>
+            </ul> -->
+            <!-- <ul>
                 <fieldset>
                 <legend>Choose a Farm Animal User Identification!</legend>
                 <label for="sheep">Sheep</label>
@@ -91,14 +110,23 @@
                 <input type="radio" id="cow" name="userId" value="cow" checked />
                 <label for="pig">Pig</label>
                 <input type="radio" id="pig" name="userId" value="pig" />
-            </ul>
-            <button type="submit"  class="btn btn-secondary btn-sm">I'm Ready</button>
+            </ul> -->
+            <button type="submit"  class="btn btn-secondary btn-sm" >I'm Ready</button>
         </form>  
       </div>
 
     <div>
         <h3 class="tit-description">Your Progress:</h3>
-        <form class="mybox">
+        <div>
+        <span id="progress_happening"></span>
+          <!-- The progress element with an initial value -->
+          <progress id="progressBar" value="30" max="100"></progress>
+
+          <!-- Button to increase progress -->
+          <button id="increaseButton">Increase Progress</button>
+  
+        </div>
+        <!-- <form class="mybox">
         <p>Below this is a database placeholder, that will display updated progress when you track your habits!</p>
         <div>
             <p>Habit 1:</p>
@@ -142,14 +170,16 @@
             </li>
         </div>
 
-        </form>
+        </form> -->
     </div>
     </main>
+
 
     <footer class="container-fluid">
         <div class="nav-item">
         <a class="nav-link" href="https://github.com/mcshayla/startup">Shayla's GitHub</a>
         </div>
     </footer>
+    <script src="habits.js"></script>
   </body>
 </html>

@@ -27,6 +27,16 @@ p {
   font-weight: bold;
 }
 
+#progressBar {
+  width: 400px;
+  height: 50px;
+  background-color: #eee;
+}
+
+#progressBar::-webkit-progress-value {
+  background: pink;
+}
+
 @keyframes fly-from-left {
     0% {
       transform: translateX(-200%);

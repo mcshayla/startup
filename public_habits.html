@@ -36,8 +36,8 @@
         </header>
  <main>
       <div class="players">
-        UserName:
-        <span class="player-name">Mystery player</span>
+        <!-- UserName:
+        <span class="player-name">Mystery player</span> -->
         <div> 
             <!-- <p> **WebSocket - Anytime a user creates a public habit, it is posted on the public habit page for all users to see.** </p> -->
             <h3 class="tit-description">Celebrate Progress with Others:</h3>
@@ -45,7 +45,7 @@
 
         </div>
         <section class="fly-in">
-        <div>
+        <!-- <div>
              <img width="50" alt="user1" src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Flock_of_sheep.jpg" />
              <span>User 1 + data display</span>
         </div>
@@ -55,7 +55,18 @@
        </div>
        <div>
           <img width="50" alt="user1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Pig_farm_Vampula_9.jpg/220px-Pig_farm_Vampula_9.jpg" />
-          <span>User 3 + data display</span>
+          <span>User 3 + data display</span> -->
+          <table class="table table-warning table-striped-columns">
+            <thead class="table-dark">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Habit</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody id="scores"></tbody>
+          </table>
        </section>
    </div>
     </main>
@@ -65,5 +76,7 @@
       <a class="nav-link" href="https://github.com/mcshayla/startup">Shayla's GitHub</a>
       </div>
     </footer>
+
+    <script src="public.js"></script>
   </body>
 </html>
