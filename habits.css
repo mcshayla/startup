@@ -27,13 +27,13 @@ p {
   font-weight: bold;
 }
 
-#progressBar {
+progress {
   width: 400px;
   height: 50px;
   background-color: #eee;
 }
 
-#progressBar::-webkit-progress-value {
+progress::-webkit-progress-value {
   background: pink;
 }
 
