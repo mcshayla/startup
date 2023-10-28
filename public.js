@@ -1,29 +1,29 @@
-function loadScores() {
-    let scores = [];
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      scores = JSON.parse(scoresText);
+function loadPublic() {
+    let public = [];
+    const publicData = localStorage.getItem('publicData');
+    if (publicData) {
+      public = JSON.parse(publicData);
     }
   
-    const tableBodyEl = document.querySelector('#scores');
+    const tableBodyEl = document.querySelector('#public_table');
   
-    if (scores.length) {
-      for (const [i, score] of scores.entries()) {
-        const positionTdEl = document.createElement('td');
+    if (public.length) {
+      for (const [i, pub] of public.entries()) {
+        const numberEl = document.createElement('td');
         const nameTdEl = document.createElement('td');
-        const scoreTdEl = document.createElement('td');
-        const dateTdEl = document.createElement('td');
+        const habitEl = document.createElement('td');
+        const progressEl = document.createElement('td');
   
-        positionTdEl.textContent = i + 1;
-        nameTdEl.textContent = score.name;
-        scoreTdEl.textContent = score.score;
-        dateTdEl.textContent = score.date;
+        numberEl.textContent = i + 1;
+        nameTdEl.textContent = pub.name;
+        habitEl.textContent = pub.habit;
+        progressEl.textContent = pub.ratio;
   
         const rowEl = document.createElement('tr');
-        rowEl.appendChild(positionTdEl);
+        rowEl.appendChild(numberEl);
         rowEl.appendChild(nameTdEl);
-        rowEl.appendChild(scoreTdEl);
-        rowEl.appendChild(dateTdEl);
+        rowEl.appendChild(habitEl);
+        rowEl.appendChild(progressEl);
   
         tableBodyEl.appendChild(rowEl);
       }
@@ -32,5 +32,5 @@ function loadScores() {
     }
   }
   
-loadScores();
+loadPublic();
   

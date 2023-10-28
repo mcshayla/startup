@@ -34,14 +34,14 @@ function habitInput() {
 }
 
 
-// Function to create a progress bar
+//Function to create a progress bar
 function createProgressBar() {
   console.log("everything is fine.........");
   
   const inputName = localStorage.getItem('newHabit');
   
   const inputMaxValue = parseInt(localStorage.getItem('timesTrack'));
-  //const pOp = localStorage.getItem('pOp');
+ 
   // let public = []; //////
   // console.log(pOp)
 
@@ -53,38 +53,74 @@ function createProgressBar() {
     progressBar.setAttribute('max', inputMaxValue);
     progressBar.value = 0;
 
-    const progressBarLabel = document.createElement('div');
+    const progressBarLabel = document.createElement('h5');
     progressBarLabel.textContent = inputName;
 
     const progressBarsContainer = document.getElementById('progressContainer');
     progressBarsContainer.appendChild(progressBarLabel);
     progressBarsContainer.appendChild(progressBar);
 
+    const streak = document.createElement('p');
+    streak.textContent = 0;
+    progressBarsContainer.appendChild(streak);
+    
+
     const increaseButton = document.createElement('button');
     increaseButton.textContent = 'Increase Progress';
     progressBarsContainer.appendChild(increaseButton);
-    increaseButton.addEventListener('click', updateProgressBar);
+    increaseButton.addEventListener('click', function () {updateProgressBar(inputName, progressBar, streak)});
+   
+   
+    //streak += increaseButton.addEventListener('click', updateStreak); /////
 
-    // const resetButton = document.createElement('button');
-    // increaseButton.textContent = 'Reset';
-    // progressBarsContainer.appendChild(resetButton);
-    // increaseButton.addEventListener('click', resetProgressBar);
+    const resetButton = document.createElement('button');
+    resetButton.textContent = 'Reset';
+    progressBarsContainer.appendChild(resetButton);
+    resetButton.addEventListener('click', resetProgressBar);
 
-
-    // if (pOp != 'Private') {
-    //   updatePublic(inputName, inputMaxValue);
-    // }
+    
+   
   } else {
     alert('Please enter a valid input name and max value.');
   }
 }
 
-// function updatePublic(inputName, inputMaxValue) {
-//     const theName = this.PlayerName();
-//     const newPublic = { name: theName, habit: inputName } 
-    
 
-// }
+function updatePublic(inputName) {
+  const theName = PlayerName();
+  const streakKey = `streak_${inputName}`;
+  const streak = parseInt(localStorage.getItem(streakKey));
+  
+  if (!isNaN(streak) && theName) {
+    //localStorage.clear();
+    const publicData = JSON.parse(localStorage.getItem('publicData')) || [];
+    
+    // Search for an existing public record for the habit
+    const existingRecordIndex = publicData.findIndex(record => record.habit === inputName);
+    
+    if (existingRecordIndex !== -1) {
+      // Update the existing record with the new streak value
+      publicData[existingRecordIndex].ratio = streak;
+    } else {
+      // Create a new public record
+      const newPublic = { name: theName, habit: inputName, ratio: streak };
+      publicData.push(newPublic);
+    }
+
+    localStorage.setItem('publicData', JSON.stringify(publicData));
+  }
+
+
+    // const theName = PlayerName();
+    // let streakKey = `streak_${inputName}`;
+    // let streak = parseInt(localStorage.getItem(streakKey))
+   
+    // const newPublic = { name: theName, habit: inputName, ratio: streak};
+    // let public = JSON.parse(localStorage.getItem('publicData')) || [];
+    // public.push(newPublic);
+
+    // localStorage.setItem('publicData', JSON.stringify(public));
+}
 
 // Function to load progress bars from local storage on page load
 function loadProgressBarsFromLocalStorage() {
@@ -99,8 +135,18 @@ function loadProgressBarsFromLocalStorage() {
     const progressBarLabel = document.createElement('div');
     progressBarLabel.textContent = data.name;
 
+    // const streakDisplay = document.createElement('div');
+    // const streakKey = `streak_${data.name}`;
+    // const streakValue = parseInt(localStorage.getItem(streakKey)) || 0;
+    // streakDisplay.textContent = `Current Streak for ${data.name}: ${streakValue}`;
+
+
+    // console.log('Streak Key:', streakKey);
+    // console.log('Streak Value:', streakValue);
+
     progressBarsContainer.appendChild(progressBarLabel);
     progressBarsContainer.appendChild(progressBar);
+    // progressBarsContainer.appendChild(streakDisplay);
   }
 }
 
@@ -118,29 +164,72 @@ function displayInput() {
   playerNameElement.textContent = newHabit+ ' ' + toTrack + ' ' + pOp;
 }
 
-function updateProgressBar() {
+function updateProgressBar(inputName, progressBar, streak) {
+  const pOp = localStorage.getItem('pOp');
+  // const progressBar = this.previousElementSibling;
+  // if (progressBar.value < progressBar.max) {
+  //   progressBar.value += 1;
+  
+  // currentStreak = parseInt(currentStreak);
+  // currentStreak += 1;
+  // streak.textContent = currentStreak;
+  if (progressBar.value < progressBar.max) {
+    progressBar.value += 1;
+
+    let currentStreak = parseInt(streak.textContent);
+    currentStreak += 1;
+    streak.textContent = currentStreak;
+    let streakKey = `streak_${inputName}`;
+    localStorage.setItem(streakKey, progressBar.value);
+
+
+  
+    if (pOp != 'Private') {
+      updatePublic(inputName);
+    }
+
+    // const inputName = progressBar.previousElementSibling.textContent; // Get the inputName from the progress bar label
+
+    // let streakKey = `streak_${inputName}`;
+    // let streak = parseInt(localStorage.getItem(streakKey)) || 0;
+    // streak += 1;
+    // localStorage.setItem(streakKey, streak);
+
+    // displayStreak(inputName, streak);
+  }
+}
+
+
+
+// function displayStreak(inputName, streak) {
+//   console.log("made itttt")
+//   const streakDisplay = document.getElementById(`streakDisplay_${inputName}`);
+//   streakDisplay.textContent = `Current Streak for ${inputName}: ${streak}`;
+// }
+//   let streakKey = `streak_${inputName}`;
+//   let streak = parseInt(localStorage.getItem(streakKey)) || 0;
+//   const streakDisplay = document.getElementById('streakDisplay');
+//   streakDisplay.textContent = `Current Streak for ${inputName}: ${streak}`;
+// }
+
+
+// function displayStreak(streak) {
+//   const streakDisplay = document.getElementById('streakDisplay');
+//   streakDisplay.textContent = `Current Streak: ${streak}`;
+// }
+
+
+
+function resetProgressBar() {
+  console.log("hiiiiiiiiii")
   const progressBar = this.previousElementSibling;
   if (progressBar.value < progressBar.max) {
     progressBar.value += 1;
   }
+  console.log(progressBar.value)
+ 
 }
-// function resetProgressBar() {
-//   const progressBar = this.previousElementSibling;
-//   if (progressBar.value < progressBar.max) {
-//     progressBar.value -= 1;
-//   }
-// }
 
 
-// function updateProgressBar() {
-//   const progressBar = document.getElementById('progressBar');
-//   if (progressBar.value < progressBar.max) {
-//     progressBar.value += 10; // Increase the value by 10 (adjust as needed)
-//   }
-// }
-
-// Attach a click event listener to the button
-// const increaseButton = document.getElementById('increaseButton');
-// increaseButton.addEventListener('click', updateProgressBar);
 
 
