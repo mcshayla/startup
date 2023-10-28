@@ -60,3 +60,10 @@ I styled the application to look neat for production
 - **application elements** - split content up with headers and whitespace. made use of transitions for elements appearing on the page. Used bootstrap buttons for styling and background colors to seperate content.
 - **application text content** - an easily readable font throughout. used font weight to create contrast.
 - **appliction images** - adjusted size of images and content images transition onto public page.
+
+## JavaScript
+I used JavaScript to make the application iteractive and active.
+- **Login** - I have a placeholder for a username and password. The input is stored in local storage and if there is input, you are taken to the habits page. 
+- **Database Data** - On the habits page, input is taken and stored in local storage to be placed below in progress bars. 
+- **WebSocket** - The username, habit, and progress(streak) for each set of input that is marked "public" is placed in a table on the public page. If it is the same habit, the record progress is shown on the public page. 
+- **Application Logic** - Once the progress bars are displayed, the user can click to increase the progress on a habit. 
