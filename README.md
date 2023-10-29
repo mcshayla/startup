@@ -57,13 +57,13 @@ I styled the application to look neat for production
 - **Header, footer, and main** -used flex
 - **navigation elements** - changed the text color to white in header and footer and removed the underlines. A link to my github is visible if you scroll to the footer.
 - **responsive to windo resizing** - elements move with resizing to look good at any size. header and footer only show when there is enough space.
-- **application elements** - split content up with headers and whitespace. made use of transitions for elements appearing on the page. Used bootstrap buttons for styling and background colors to seperate content.
+- **application elements** - split content up with headers and whitespace. made use of transitions for elements appearing on the page. Used bootstrap buttons for styling and backgsound colors to seperate content.
 - **application text content** - an easily readable font throughout. used font weight to create contrast.
 - **appliction images** - adjusted size of images and content images transition onto public page.
 
 ## JavaScript
 I used JavaScript to make the application iteractive and active.
-- **Login** - I have a placeholder for a username and password. The input is stored in local storage and if there is input, you are taken to the habits page. 
-- **Database Data** - On the habits page, input is taken and stored in local storage to be placed below in progress bars. 
-- **WebSocket** - The username, habit, and progress(streak) for each set of input that is marked "public" is placed in a table on the public page. If it is the same habit, the record progress is shown on the public page. 
-- **Application Logic** - Once the progress bars are displayed, the user can click to increase the progress on a habit. 
+- **Login** - I have a placeholder for a username and password. The username and password is stored in local storage and if there is input you are taken to the habits page. 
+- **Database Data** - On the habits page, input is taken and stored in local storage and displayed below once the button is hit. The application displays a progress bar, habit, and number representing progress.
+- **WebSocket** - The username, habit, and progress(streak) for each set of input that is marked "public" is stored and then placed in a table on the public page. If it is the same habit, the instance with the most progress is shown on the public page. This will use future websocket.
+- **Application Logic** - Once the progress bars are displayed, the user can click to increase the progress on a habit. You can visually see the bar increase as you work on your habit.
