@@ -94,7 +94,7 @@ function updatePublic(inputName) {
   const streak = parseInt(localStorage.getItem(streakKey));
   
   if (!isNaN(streak) && theName) {
-    localStorage.clear();
+   //localStorage.clear();
     const publicData = JSON.parse(localStorage.getItem('publicData')) || [];
     
     // Search for an existing public record for the habit
