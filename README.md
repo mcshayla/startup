@@ -65,5 +65,5 @@ I styled the application to look neat for production
 I used JavaScript to make the application iteractive and active.
 - **Login** - I have a placeholder for a username and password. The username and password is stored in local storage and if there is input you are taken to the habits page. Support/placeholder for future login.
 - **Database Data** - On the habits page, input is taken and stored in local storage and displayed once the button is hit. The application displays a progress bar, habit, and number representing progress. The data of progress on habits is stored locally to be shown on another page.
-- **WebSocket** - The username, habit, and progress(streak) for each set of input that is marked "public" is stored and then placed in a table on the public page. If it is the same habit, the instance with the most progress is shown on the public page. This will use future websocket.
+- **WebSocket** - The username, habit, and progress(streak) for each set of input that is marked "public" is stored and then placed in a table on the public page. If it is the same habit, it is not repeated. This will use future websocket.
 - **Application Logic** - Once the progress bars are displayed, the user can click to increase the progress on a habit. You can visually see the bar increase as you work on your habit.
