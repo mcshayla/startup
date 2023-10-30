@@ -30,6 +30,7 @@ header {
 }
 padding: 1em; sets the padding for the header element. em = a multiplier of the width of the letter m in the parent's font. It provides spacing inside the header element, pushing the content away from the edges of the element. In this case, the padding creates space around the content inside the header. The padding is uniform on all four sides of the header. padding: 1em 2em; first would correspond with top and bottom. second would correspond with left and right.
 
+you can do madding for top, right , bottom, left.
 7. Arrow Functions!
     'const a = [1, 2, 3, 4];
 
@@ -55,7 +56,7 @@ arrow returns:
     return 3;
     };
   // RETURNS: 3
-  
+  next, arrow functions inherit the this pointer from the scope of where it is created. This makes what is know as a closures. A closures allows a function to confinue referencing its creating scope, even after it has passed out of that scope. (a,b) => a-b
 8. arrays and maps
    ![image](https://github.com/mcshayla/startup/assets/137968448/25463760-f7dd-4203-bb69-c2eef2ffcd2c)
 
@@ -69,13 +70,14 @@ const result = testAll(["abc4", "bbbbb5", "5555"], (i) => i.length > 3);
     streak.textContent = 0;
     progressBarsContainer.appendChild(streak);
     
-
+"returns an element with a specified value. returns null if the element does not exist."
     const increaseButton = document.createElement('button');
     increaseButton.textContent = 'Increase Progress';
     progressBarsContainer.appendChild(increaseButton);
     increaseButton.addEventListener('click', function () {updateProgressBar(inputName, progressBar, streak)});'
     'var button = document.getElementById("myButton");
     var output = document.getElementById("output");
+
 
     button.addEventListener("click", function() {
         output.innerHTML = "Button clicked!";
