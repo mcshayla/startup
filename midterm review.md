@@ -923,3 +923,28 @@ coinToss
 
 Promises are the standard way to do asynchronous processing in JavaScript, but they are not the only way. The `Observer` pattern, popularized by web programming frameworks such as `Angular`, use a model called `Observer`. The major difference between Observers and Promises is that Promises immediately begin to execute when the Promise is created, but Observers form a pipeline that you then pass an execution object into. This allows Observers to be reused, and the result of executing an Observable to be saved as a history of a particular execution.
 
+
+promise example: 
+// Create a function that returns a Promise
+function fetchData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const data = "Data from the server";
+      if (data) {
+        resolve(data); // Resolve the Promise if data is available
+      } else {
+        reject("Data not found"); // Reject the Promise if data is not available
+      }
+    }, 2000); // Simulate a delay of 2 seconds
+  });
+}
+
+// Using the Promise
+fetchData()
+  .then((result) => {
+    console.log("Data received:", result);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
+
