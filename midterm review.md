@@ -305,7 +305,7 @@ h1 {
   border-bottom: thin black solid;
 }
 
-section {
+section {J
   background: #eeeeee;
   padding: 0.25em;
   margin-bottom: 0.5em;
