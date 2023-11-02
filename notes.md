@@ -90,5 +90,6 @@ alertDisplay('called from main.js');'
 
 - async declares that a function returns a promise
 - await wraps a call to the async function, blocks execution until the proise has resolved, and then returns the result of the promise.
-- 
+
+
 
