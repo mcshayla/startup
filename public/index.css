@@ -1,0 +1,20 @@
+
+  .quote-box {
+    margin-top: 1em;
+    padding: 0.5em;
+    border-radius: 15px;
+  }
+  
+  .quote {
+    font-style: italic;
+  }
+  
+  .author {
+    font-weight: bold;
+    text-align: right;
+  }
+  
+  .author::before {
+    content: " - ";
+  }
+  

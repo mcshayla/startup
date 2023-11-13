@@ -1,10 +1,28 @@
-function loadPublic() {
-    let public = [];
-    const publicData = localStorage.getItem('publicData');
-    if (publicData) {
-      public = JSON.parse(publicData);
-    }
+// function loadPublic() {
+//     let public = [];
+//     const publicData = localStorage.getItem('publicData');
+//     if (publicData) {
+//       public = JSON.parse(publicData);
+//     }
+
+async function loadPublic() {
+  let public = [];
+  try {
+    const response = await fetch('/api/public');
+    public = await response.json();
   
+    localStorage.setItem('public', JSON.stringify(public));
+  } catch {
+    const publicdata = localStorage.getItem('public')
+    if (publicdata) {
+      public = JSON.parse(publicdata);
+    }
+  }
+
+  displayPublic(public);
+}
+
+function displayPublic(public) {
     const tableBodyEl = document.querySelector('#public_table');
   
     if (public.length) {
@@ -30,7 +48,7 @@ function loadPublic() {
     } else {
       tableBodyEl.innerHTML = '<tr><td colSpan=4>Share with others! Become Together!</td></tr>';
     }
-  }
+}
   
 loadPublic();
   
