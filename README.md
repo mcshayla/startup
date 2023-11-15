@@ -67,3 +67,11 @@ I used JavaScript to make the application iteractive and active.
 - **Database Data** - On the habits page, input is taken and stored in local storage and displayed once the button is hit. The application displays a progress bar, habit, and number representing progress. The data of progress on habits is stored locally to be shown on another page.
 - **WebSocket** - The username, habit, and progress(streak) for each set of input that is marked "public" is stored and then placed in a table on the public page. If it is the same habit, it is not repeated. This will use future websocket.
 - **Application Logic** - Once the progress bars are displayed, the user can click to increase the progress on a habit. You can visually see the bar increase as you work on your habit.
+
+## Service
+Usage of endpoints
+- **Node.js/Express HTTP service** - done!
+- **Static middleware for frontend** - done!
+- **Calls to third party endpoints** - done! Quote appears on home page!
+- **Backend service endpoints** - in my index.js file. endpoints for progress of habits
+- **Frontend calls service endpoints** - used the fetch function

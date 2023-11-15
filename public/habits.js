@@ -74,25 +74,8 @@ async function updatePublic(inputName) {
   const streakKey = `streak_${inputName}`;
   const streakValue = parseInt(localStorage.getItem(streakKey));
 
-  // if (!isNaN(streak) && theName) {
-  //   //localStorage.clear();
-  //   const publicData = JSON.parse(localStorage.getItem('publicData')) || [];
-    
-  //   // Search for an existing public record for the habit
-  //   const existingRecordIndex = publicData.findIndex(record => record.habit === inputName);
-    
-  //   if (existingRecordIndex !== -1) {
-  //     // Update the existing record with the new streak value
-  //     publicData[existingRecordIndex].ratio = streak;
-  //   } else {
-  //     // Create a new public record
-  //     const newPublic = { name: theName, habit: inputName, ratio: streak };
-  //     publicData.push(newPublic);
-  //   }
-
-  //   localStorage.setItem('publicData', JSON.stringify(publicData));
-  // }
   if (theName && !isNaN(streakValue)) {
+    const publicData = JSON.parse(localStorage.getItem('publicData')) || [];
     try {
       const response = await fetch('/api/public', {
         method: 'POST',
@@ -105,30 +88,31 @@ async function updatePublic(inputName) {
           ratio: streakValue,
         }),
       });
-      const updatedPublicData = await response.json();
-      localStorage.setItem('publicData', JSON.stringify(updatedPublicData))
-      console.log('Updated public data:', updatedPublicData);
+
+    data = await response.json()
+    console.log(data)
+    const existingRecordIndex = publicData.findIndex(record => record.habit === inputName);
+  
+    if (existingRecordIndex !== -1) {
+
+      publicData[existingRecordIndex] = data;
+    
+    } else {
+      // Create a new public record
+      const newPublic = { name: theName, habit: inputName, ratio: streakValue };
+      publicData.push(newPublic);
+    }
+
+    localStorage.setItem('publicData', JSON.stringify(publicData))
+
     } catch (error) {
-      console.error('Error updating public data:', error);
+       console.error('Error updating public data:', error);
     }
   }
 }
 
 // Function to load progress bars from local storage on page load
 async function loadProgressBarsFromServer() {
-  // const storedData = JSON.parse(localStorage.getItem('progressBarsData') || '[]');
-  // const progressBarsContainer = document.getElementById('progressContainer');
-
-  // for (const data of storedData) {
-  //   const progressBar = document.createElement('progress');
-  //   progressBar.setAttribute('max', data.max);
-  //   progressBar.value = 0;
-
-  //   const progressBarLabel = document.createElement('div');
-  //   progressBarLabel.textContent = data.name;
-
-  //   progressBarsContainer.appendChild(progressBarLabel);
-  //   progressBarsContainer.appendChild(progressBar);
   try{
     const response = await fetch('/api/public')
     const publicData = await response.json();

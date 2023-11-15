@@ -7,16 +7,16 @@ const port = process.argv.length >2? process.argv[2] : 4000;
 app.use(express.json());
 
 app.use(express.static('public'));
-
+5
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-////GetScores        /////////////////////////////edit!!!!!
+
 apiRouter.get('/public', (_req, res) => {
     res.send(public);
 });
   
-  // SubmitScore
+ 
 apiRouter.post('/public', (req, res) => {
   public = updatePublic(req.body, public);
   res.send(public);
@@ -40,11 +40,16 @@ let public = [];
 function updatePublic(newEntry, public) {
   let found = false;
   for (const [i, prevEntry] of public.entries()) {
-    if (newEntry.pub > prevEntry.pub) {
-      public.splice(i, 0, newEntry);
-      found = true;
-      break;
-    }
+      if (newEntry.name === prevEntry.name && newEntry.habit === prevEntry.habit) {
+        prevEntry.ratio += 1;
+        found = true;
+        break;
+      }
+    // if (newEntry.pub > prevEntry.pub) {
+    //   public.splice(i, 0, newEntry);
+    //   found = true;
+    //   break;
+    // }
   }
 
   if (!found) {
