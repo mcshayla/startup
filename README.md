@@ -75,3 +75,12 @@ Usage of endpoints
 - **Calls to third party endpoints** - done! Quote appears on home page!
 - **Backend service endpoints** - in my index.js file. endpoints for progress of habits
 - **Frontend calls service endpoints** - used the fetch function
+
+
+## Database
+I stored progress in a database
+
+**MongoDB Atlas** database created - done!
+**Endpoints for data** - My stubbed out endpoints now process the data and send it to Mongo.
+**Stores data in MongoDB** - done!
+

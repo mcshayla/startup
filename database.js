@@ -1,10 +1,11 @@
 const config = require('./dbConfig.json');
-//const { MongoClient } = require('mongodb')
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
+const { MongoClient } = require('mongodb')
+//const { MongoClient, ServerApiVersion } = require('mongodb');
 
+const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('rental');
+const db = client.db('startup');
+const publicCollection = db.collection('progress');
 
 (async function testConnection() {
   await client.connect();
@@ -15,54 +16,71 @@ const db = client.db('rental');
 });
 
 
+// async function addProgress(public) {
+//   // let found = false;
 
-// const { MongoClient, ServerApiVersion } = require('mongodb');
+// //   for (const [i, prevEntry] of public.entries()) {
+// //     if (newEntry.name === prevEntry.name && newEntry.habit === prevEntry.habit) {
+// //       prevEntry.ratio += 1
+// //       found = true;
+// //       break;
+// //     }
+// //   }
 
-// const uri = "mongodb+srv://mcmshayla:CS260Mongopw@cluster0.qcpi0za.mongodb.net/?retryWrites=true&w=majority";
-// // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(uri, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
+// //   if (!found) {
+// //     const result = await publicCollection.insertOne(newEntry);
+// //     return result;
+// //   }
+// // }
+
+//   const result = await publicCollection.insertOne(public);
+//   return result;
+//}
+async function addProgress(newEntry) {
+  const existingEntry = await publicCollection.findOne({
+    name: newEntry.name,
+    habit: newEntry.habit
+  });
+
+  if (existingEntry) {
+    await publicCollection.updateOne(
+      { habit: existingEntry.habit },
+      { $inc: { ratio: 1 } }   
+    );
+  } else {
+    const result = await publicCollection.insertOne(newEntry);
+    return result;
+  }
+}
+
+function getProgress() {
+  const query = {ratio: {$gt: 0}}
+  const options = {
+    sort: {score: -1},
+
+    
+  };
+  const cursor = publicCollection.find(query, options);
+  return cursor.toArray();
+
+}
+
+module.exports = { addProgress, getProgress};
+
+// let public = [];
+// function updatePublic(newEntry, public) {
+//   let found = false;
+//   for (const [i, prevEntry] of public.entries()) {
+//       if (newEntry.name === prevEntry.name && newEntry.habit === prevEntry.habit) {
+//         prevEntry.ratio += 1;
+//         found = true;
+//         break;
+//       }
 //   }
-// });
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     await client.close();
+
+//   if (!found) {
+//     public.push(newEntry);
 //   }
+
+//   return public;
 // }
-// run().catch(console.dir);
-
-
-
-// const { MongoClient } = require('mongodb');
-
-// const userName = 'holowaychuk';
-// const password = 'express';
-// const hostname = 'mongodb.com';
-
-// const url = `mongodb+srv://${userName}:${password}@${hostname}`;
-
-// const client = new MongoClient(url);
-
-// const collection = client.db('rental').collection('house');
-
-// const house = {
-//   name: 'Beachfront views',
-//   summary: 'From your bedroom to the beach, no shoes required',
-//   property_type: 'Condo',
-//   beds: 1,
-// };
-// await collection.insertOne(house);
-
-// const cursor = collection.find();
-// const rentals = await cursor.toArray();
-// rentals.forEach((i) => console.log(i));
