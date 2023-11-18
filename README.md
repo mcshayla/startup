@@ -87,8 +87,8 @@ I stored progress in a database
 
 ## Login
 **User registration** - Creates a new account in database
-**Existing user** - Stores the votes under the same user if the user already exists.
-Use MongoDB to store credentials - Stores both user and their votes.
+**Existing user** - remembers user trying to login again
+**Use MongoDB** - users and progress stored in database
 **Restricts functionality** - You cannot vote until you have logged in 
 
 
