@@ -84,3 +84,11 @@ I stored progress in a database
 **Endpoints for data** - My stubbed out endpoints now process the data and send it to Mongo.
 **Stores data in MongoDB** - done!
 
+
+## Login
+**User registration** - Creates a new account in database
+**Existing user** - Stores the votes under the same user if the user already exists.
+Use MongoDB to store credentials - Stores both user and their votes.
+**Restricts functionality** - You cannot vote until you have logged in 
+
+
