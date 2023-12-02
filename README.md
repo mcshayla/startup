@@ -92,3 +92,11 @@ I stored progress in a database
 **Restricts functionality** - You cannot vote until you have logged in 
 
 
+## WebSocket
+
+**Backend listens for WebSocket connection** -done
+**Frontend makes WebSocket connection** - done!
+**Data sent over WebSocket connection** - done! sends "yay!' and 'New Habit' messages to users
+**WebSocket data displayed** - adds text anyone creates a habit someone creates a habit
+
+

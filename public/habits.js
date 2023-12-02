@@ -8,6 +8,9 @@ function getPlayerName() {
   } else {
     playerNameElement.textContent = "Unknown User";
   }
+
+  return userName
+
 }
 
 playerN = getPlayerName()
@@ -28,16 +31,23 @@ socket.onclose = (event) => {
 };
 socket.onmessage = async (event) => {
   console.log("onmessage")
-  //const msg = JSON.parse(await event.data.text());
-  //const msg = JSON.parse(event.data)
   const msg = await event.data.text();
-  
-  //displayMsg('player', msg.from, 'a new habit. YAY!')
-  //playerN = getPlayerName()
  if (msg == "New Habit") {
-    displayMsg('Somebody\'s working on their habits! YAY!')
+    displayMsg('player', playerN, 'is working on their habits! YAY!')
  }
 };
+
+// socket.onmessage = async (event) => {
+//   console.log("onmessage");
+//   const msg = await event.data.text();
+
+//   // Assuming msg has a 'from' property that identifies the sender
+//   //console.log(msg.from)
+//   if (msg.from !== playerN && msg.text === "New Habit") {
+//     displayMsg('player', msg.from, 'is working on their habits! YAY!');
+//   }
+// };
+
 
 
 
@@ -60,6 +70,7 @@ function habitInput() {
   localStorage.setItem("timesTrack", timesTrackEl.value)
   localStorage.setItem("pOp", publicEl.checked ? "Public" : "Private");
 
+  console.log(socket);
   socket.send("New Habit");
   createProgressBar();
 
@@ -152,39 +163,40 @@ async function updatePublic(inputName) {
 }
 
 // Function to load progress bars from local storage on page load
-async function loadProgressBarsFromServer() {
-  try{
-    const response = await fetch('/api/public')
-    const publicData = await response.json();
+// async function loadProgressBarsFromServer() {
+//   try{
+//     const response = await fetch('/api/public')
+//     const publicData = await response.json();
+//     console.log(publicData);
+//     const progressBarsContainer = document.getElementById('progressContainer');
+//     progressBarsContainer.innerHTML = '';
 
-    const progressBarsContainer = document.getElementById('progressContainer');
-    progressBarsContainer.innerHTML = '';
+//     for (const entry of publicData) {
+//       const progressBar = document.createElement('progress');
+//       progressBar.setAttribute('max', 100);
+//       console.log(entry.ratio);
+//       progressBar.value = entry.ratio;
 
-    for (const entry of publicData) {
-      const progressBar = document.createElement('progress');
-      progressBar.setAttribute('max', entry.max);
-      progressBar.value = entry.value;
+//       const progressBarLabel = document.createElement('div');
+//       progressBarLabel.textContent = entry.name;
 
-      const progressBarLabel = document.createElement('div');
-      progressBarLabel.textContent = entry.name;
+//       progressBarsContainer.appendChild(progressBarLabel);
+//       progressBarsContainer.appendChild(progressBar);
+//     }
+//   } catch (error) {
+//     console.error('Error loading progress bars from server:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
 
-      progressBarsContainer.appendChild(progressBarLabel);
-      progressBarsContainer.appendChild(progressBar);
-    }
-  } catch (error) {
-    console.error('Error loading progress bars from server:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-
-  // }
-}
+//   // }
+// }
 
 // // Load progress bars on page load
 //window.addEventListener('load', loadProgressBarsFromLocalStorage);
 
-window.addEventListener('load', () => {
-  loadProgressBarsFromServer(); ///changed
-});
+// window.addEventListener('load', () => {
+//   loadProgressBarsFromServer(); ///changed
+// });
 
 
 function updateProgressBar(inputName, progressBar, streak) {
@@ -214,31 +226,20 @@ function delay(milliseconds) {
   });
 }
 
-// window.addEventListener('load', async () => {
-//   try {
-//     await configureWebSocket();
-//     habitInput();
-//     //createProgressBar();
-//   } catch (error) {
-//     console.error(error);
-//   }
-// });
 
-//function displayMsg(cls, from, msg) {
-function displayMsg(msg) {
-  const chatText = document.querySelector('#player-messages');
-  chatText.innerHTML = chatText.innerHTML + `<div>${msg} </div>`;
-  //console.log(chatText.innerHTML)
-    //`<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
-}
 
-// function broadcastEvent(from, value) {
-//   const event = {
-//     from: from,
-//     value: value,
-//   };
-//   socket.send(JSON.stringify(event));
+// function displayMsg(from, msg) {
+//   const chatText = document.querySelector('#player-messages');
+//   chatText.innerHTML = `<div>${msg} </div>`+ chatText.innerHTML;
+
 // }
+
+
+function displayMsg(cls, from, msg) {
+  const chatText = document.querySelector('#player-messages');
+  chatText.innerHTML =
+    `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+}
 
 
 
