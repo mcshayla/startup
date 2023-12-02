@@ -34,8 +34,9 @@ socket.onmessage = async (event) => {
   
   //displayMsg('player', msg.from, 'a new habit. YAY!')
   //playerN = getPlayerName()
- 
-  displayMsg('Somebody\'s working on their habits! YAY!')
+ if (msg == "New Habit") {
+    displayMsg('Somebody\'s working on their habits! YAY!')
+ }
 };
 
 
@@ -59,7 +60,7 @@ function habitInput() {
   localStorage.setItem("timesTrack", timesTrackEl.value)
   localStorage.setItem("pOp", publicEl.checked ? "Public" : "Private");
 
-  socket.send("uykfyufuu");
+  socket.send("New Habit");
   createProgressBar();
 
   // ws.send("uykfyufuu");
@@ -226,8 +227,7 @@ function delay(milliseconds) {
 //function displayMsg(cls, from, msg) {
 function displayMsg(msg) {
   const chatText = document.querySelector('#player-messages');
-  chatText.innerHTML =
-    `<div>${msg} </div>`; //+ chatText.innerHTML;
+  chatText.innerHTML = chatText.innerHTML + `<div>${msg} </div>`;
   //console.log(chatText.innerHTML)
     //`<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
 }
