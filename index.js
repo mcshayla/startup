@@ -2,7 +2,8 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
-const DB = require('./database.js')
+const DB = require('./database.js');
+const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
@@ -89,10 +90,6 @@ secureApiRouter.get('/public', async (_req, res) => {
   res.send(public);
 });
   
-// apiRouter.post('/public', (req, res) => {
-//   public = updatePublic(req.body, public);
-//   res.send(public);
-// });
 
 secureApiRouter.post('/public', async (req, res) => {
   DB.addProgress(req.body)
@@ -115,9 +112,11 @@ function setAuthCookie(res, authToken) {
   });
 }
 
-app.listen(port, () => {
+let httpServer = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+peerProxy(httpServer)
 
 
 // ///////////////////

@@ -1,16 +1,46 @@
 
 
 function getPlayerName() {
-    const userName = localStorage.getItem('userName') ?? 'Mystery player';
-    const playerNameElement = document.getElementById('player-name');
-    if (userName) {
-      playerNameElement.textContent = userName;
-    } else {
-      playerNameElement.textContent = "Unknown User";
-    }
+  const userName = localStorage.getItem('userName') ?? 'Mystery player';
+  const playerNameElement = document.getElementById('player-name');
+  if (userName) {
+    playerNameElement.textContent = userName;
+  } else {
+    playerNameElement.textContent = "Unknown User";
   }
+}
 
-getPlayerName()
+playerN = getPlayerName()
+
+  //return new Promise((resolve, reject) => {
+const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+let socket = new WebSocket(`${protocol}://${window.location.host}`);
+
+socket.onopen = (event) => {
+  //displayMsg('system', '', '');
+  console.log("cool");
+  socket.send("yay!")
+  
+};
+socket.onclose = (event) => {
+  //displayMsg('system', '', '');
+  socket.send("bye!")
+};
+socket.onmessage = async (event) => {
+  console.log("onmessage")
+  //const msg = JSON.parse(await event.data.text());
+  //const msg = JSON.parse(event.data)
+  const msg = await event.data.text();
+  
+  //displayMsg('player', msg.from, 'a new habit. YAY!')
+  //playerN = getPlayerName()
+ 
+  displayMsg('Somebody\'s working on their habits! YAY!')
+};
+
+
+
+
 
 
 function PlayerName() {
@@ -19,6 +49,8 @@ function PlayerName() {
 
 
 function habitInput() {
+  console.log('I went to habit Input')
+
   const newHabitEl = document.querySelector("#newHabit");
   const timesTrackEl = document.querySelector("#timesTrack");
   const publicEl = document.querySelector("#public");
@@ -27,13 +59,20 @@ function habitInput() {
   localStorage.setItem("timesTrack", timesTrackEl.value)
   localStorage.setItem("pOp", publicEl.checked ? "Public" : "Private");
 
+  socket.send("uykfyufuu");
   createProgressBar();
-  console.log('Explosion');
+
+  // ws.send("uykfyufuu");
+  //broadcastEvent(getPlayerName(), {habit: newHabitEl.value});
+  // console.log('Explosion');
 }
 
 
 //Function to create a progress bar
 function createProgressBar() {
+
+
+  console.log('I went to createProgressBar')
   
   const inputName = localStorage.getItem('newHabit');
   
@@ -143,7 +182,7 @@ async function loadProgressBarsFromServer() {
 //window.addEventListener('load', loadProgressBarsFromLocalStorage);
 
 window.addEventListener('load', () => {
-  loadProgressBarsFromServer;
+  loadProgressBarsFromServer(); ///changed
 });
 
 
@@ -167,6 +206,39 @@ function updateProgressBar(inputName, progressBar, streak) {
 }
 
 
+
+function delay(milliseconds) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
+  });
+}
+
+// window.addEventListener('load', async () => {
+//   try {
+//     await configureWebSocket();
+//     habitInput();
+//     //createProgressBar();
+//   } catch (error) {
+//     console.error(error);
+//   }
+// });
+
+//function displayMsg(cls, from, msg) {
+function displayMsg(msg) {
+  const chatText = document.querySelector('#player-messages');
+  chatText.innerHTML =
+    `<div>${msg} </div>`; //+ chatText.innerHTML;
+  //console.log(chatText.innerHTML)
+    //`<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+}
+
+// function broadcastEvent(from, value) {
+//   const event = {
+//     from: from,
+//     value: value,
+//   };
+//   socket.send(JSON.stringify(event));
+// }
 
 
 
