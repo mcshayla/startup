@@ -37,22 +37,6 @@ socket.onmessage = async (event) => {
  }
 };
 
-// socket.onmessage = async (event) => {
-//   console.log("onmessage");
-//   const msg = await event.data.text();
-
-//   // Assuming msg has a 'from' property that identifies the sender
-//   //console.log(msg.from)
-//   if (msg.from !== playerN && msg.text === "New Habit") {
-//     displayMsg('player', msg.from, 'is working on their habits! YAY!');
-//   }
-// };
-
-
-
-
-
-
 
 function PlayerName() {
   return localStorage.getItem('userName') ?? 'Mystery player';
@@ -121,11 +105,13 @@ function createProgressBar() {
 
 
 async function updatePublic(inputName) {
+  console.log("i went to updatePublic");
   const theName = PlayerName();
   const streakKey = `streak_${inputName}`;
   const streakValue = parseInt(localStorage.getItem(streakKey));
 
   if (theName && !isNaN(streakValue)) {
+
     const publicData = JSON.parse(localStorage.getItem('publicData')) || [];
     try {
       const response = await fetch('/api/public', {
@@ -141,19 +127,20 @@ async function updatePublic(inputName) {
       });
 
     data = await response.json()
-    console.log(data)
+    console.log(publicDatadata)
     const existingRecordIndex = publicData.findIndex(record => record.habit === inputName);
   
     if (existingRecordIndex !== -1) {
 
       publicData[existingRecordIndex] = data;
-    
+      console.log(publicData);
     } else {
       // Create a new public record
       const newPublic = { name: theName, habit: inputName, ratio: streakValue };
       publicData.push(newPublic);
+      console.log(publicData);
     }
-
+    console.log(publicData);
     localStorage.setItem('publicData', JSON.stringify(publicData))
 
     } catch (error) {
@@ -200,6 +187,7 @@ async function updatePublic(inputName) {
 
 
 function updateProgressBar(inputName, progressBar, streak) {
+  console.log("updateProgBar");
   const pOp = localStorage.getItem('pOp');
   if (progressBar.value < progressBar.max) {
     progressBar.value += 1;

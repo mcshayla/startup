@@ -86,17 +86,17 @@ I stored progress in a database
 
 
 ## Login
-**User registration** - Creates a new account in database
-**Existing user** - remembers user trying to login again
-**Use MongoDB** - users and progress stored in database
-**Restricts functionality** - You cannot vote until you have logged in 
+- **User registration** - Creates a new account in database
+- **Existing user** - remembers user trying to login again
+- **Use MongoDB** - users and progress stored in database
+- **Restricts functionality** - You cannot vote until you have logged in 
 
 
 ## WebSocket
 
-**Backend listens for WebSocket connection** -done
-**Frontend makes WebSocket connection** - done!
-**Data sent over WebSocket connection** - done! sends "yay!' and 'New Habit' messages to users
-**WebSocket data displayed** - adds text anyone creates a habit someone creates a habit
+- **Backend listens for WebSocket connection** -done
+- **Frontend makes WebSocket connection** - done!
+- **Data sent over WebSocket connection** - done! sends "yay!' and 'New Habit' messages to users
+- **WebSocket data displayed** - adds text anyone creates a habit someone creates a habit
 
 
