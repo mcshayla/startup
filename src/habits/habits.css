@@ -2,6 +2,11 @@
     color:black;
 }
 
+.user {
+  color: rgb(118, 190, 210);
+ 
+}
+
 .mybox {
     background-color: linen;
     border-radius: 10px;
@@ -11,7 +16,8 @@
 .inputbox {
   background-color: white;
   border-radius: 10px;
-  padding: 1em;
+  padding: 1.5em;
+  text-align: left;
 }
 
 .fly-in {

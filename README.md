@@ -99,4 +99,11 @@ I stored progress in a database
 - **Data sent over WebSocket connection** - done! sends "yay!' and 'New Habit' messages to users
 - **WebSocket data displayed** - adds text anyone creates a habit someone creates a habit
 
+## React deliverable
+
+- **Bundled and transpiled** - done!
+- **Components** - Login, Habit input/Progress Bars, and Public Page
+- **Router** - Routing between all pages
+- **Hooks** - UseState to track changes
+
 

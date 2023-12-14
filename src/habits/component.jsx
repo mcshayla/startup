@@ -8,6 +8,9 @@ const MyComponent = (props) => {
   const [habit, setNewHabit] = useState('');
   const [timesToTrack, setTimesToTrack] = useState('');
   const [publicOrPrivate, setPublicOrPrivate] = useState('Public');
+  
+  // const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+  // const socket = new WebSocket(`${protocol}://${window.location.host}`);
 
   const handleHabitChange = (e) => {
     setNewHabit(e.target.value);
@@ -20,6 +23,104 @@ const MyComponent = (props) => {
   const handlePublicOrPrivateChange = (e) => {
     setPublicOrPrivate(e.target.value);
   };
+
+
+  // useEffect(() => {
+  //   const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+  //   const socket = new WebSocket(`${protocol}://${window.location.host}`);
+
+  //   socket.onopen = (event) => {
+  //     console.log('WebSocket connection opened');
+  //     // Wait for a short time to ensure the connection is fully open
+  //     setTimeout(() => {
+  //       socket.send('yay!');
+  //     }, 1000); // Adjust the delay based on your needs
+  //   };
+
+  //   socket.onclose = (event) => {
+  //     console.log('WebSocket connection closed');
+  //     socket.send('bye!');
+  //   };
+
+  //   socket.onmessage = async (event) => {
+  //     console.log('onmessage');
+  //     const msg = await event.data.text();
+  //     if (msg === 'New Habit') {
+  //       displayMsg('player', playerN, 'is working on their habits! YAY!');
+  //     }
+  //   };
+
+  //   // Event listeners
+  //   socket.addEventListener('open', socket.onopen);
+  //   socket.addEventListener('close', socket.onclose);
+  //   socket.addEventListener('message', socket.onmessage);
+
+  //   // Clean up the WebSocket connection when the component unmounts
+  //   return () => {
+  //     console.log('WebSocket connection closed on component unmount');
+  //     socket.close();
+  //   };
+  // }, [userName]);
+
+  // socket.onopen = (event) => {
+  //   //displayMsg('system', '', '');
+  //   console.log("cool");
+  //   socket.send("yay!")
+    
+  // };
+  // socket.onclose = (event) => {
+  //   //displayMsg('system', '', '');
+  //   socket.send("bye!")
+  // };
+  // socket.onmessage = async (event) => {
+  //   console.log("onmessage")
+  //   const msg = await event.data.text();
+  //  if (msg == "New Habit") {
+  //     displayMsg('player', playerN, 'is working on their habits! YAY!')
+  //  }
+  // };
+
+
+  // const handleOpen = (event) => {
+  //   console.log('WebSocket connection opened');
+  //   socket.send('yay!');
+  // };
+  
+  // //socket.addEventListener('open', handleOpen);
+  // socket.onopen = handleOpen;
+
+  // const handleClose = (event) => {
+  //   console.log('WebSocket connection closed');
+  //   socket.send('bye!');
+  // };
+
+  // const handleMessage = async (event) => {
+  //   console.log('WebSocket message received');
+  //   const msg = await event.data.text();
+  //   if (msg === 'New Habit') {
+  //     // Assuming displayMsg is a function to display messages
+  //     displayMsg('player', userName, 'is working on their habits! YAY!');
+  //   }
+  // };
+
+    // Event listeners
+  
+  // socket.addEventListener('close', handleClose);
+  // socket.addEventListener('message', handleMessage);
+
+  // useEffect(() => {
+  //   return () => {
+  //     console.log('WebSocket connection closed on component unmount');
+  //     socket.close();
+  //   };
+  // }, [socket]);
+  
+
+  // function displayMsg(cls, from, msg) {
+  //   const chatText = document.querySelector('#player-messages');
+  //   chatText.innerHTML =
+  //     `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+  // }
 
   const habitInput = (e) => {
     e.preventDefault();
@@ -163,8 +264,8 @@ const MyComponent = (props) => {
        <div>
             
             <div className="players">
-                UserName:
-                <span id="player-name">{userName}</span>
+              
+                <span className="user" id="player-name">UserName: {userName}</span>
                 <div>
                     <h3 className="tit-description">Develop A Habit:</h3>
                     <p>This is where you can create a new habit to be tracked! You can share and support others, or keep to yourself. You got this!!</p>
@@ -197,11 +298,11 @@ const MyComponent = (props) => {
                 </div>
                 <div id="progressContainer"></div>
             </div>
-            <div>
+            {/* <div>
                 <p>YAY FOR OTHERS!!</p>
                 <span className="player"></span>
                 <p id="player-messages"></p>
-            </div>
+            </div> */}
         </div>
     );
 }
