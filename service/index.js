@@ -85,8 +85,7 @@ secureApiRouter.use(async (req, res, next) => {
 
 
 //get progress
-secureApiRouter.
-get('/public', async (_req, res) => {
+secureApiRouter.get('/public', async (_req, res) => {
   const public = await DB.getProgress();  
   res.send(public);
 });

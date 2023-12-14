@@ -104,6 +104,6 @@ I stored progress in a database
 - **Bundled and transpiled** - done!
 - **Components** - Login, Habit input/Progress Bars, and Public Page
 - **Router** - Routing between all pages
-- **Hooks** - UseState to track changes
+- **Hooks** - uses React.useEffect
 
 
