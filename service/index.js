@@ -74,7 +74,7 @@ var secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
 secureApiRouter.use(async (req, res, next) => {
-  authToken = req.cookies[authCookieName];
+  const authToken = req.cookies[authCookieName];
   const user = await DB.getUserByToken(authToken);
   if (user) {
     next();
@@ -92,7 +92,8 @@ secureApiRouter.get('/public', async (_req, res) => {
   
 
 secureApiRouter.post('/public', async (req, res) => {
-  DB.addProgress(req.body)
+  const pub = {...req.body, ip: req.ip} ///not here?
+  await DB.addProgress(req.body)  ///without await
   const public = await DB.getProgress();
   res.send(public);
 });

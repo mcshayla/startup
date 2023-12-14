@@ -1,0 +1,47 @@
+.tit-description {
+    color:black;
+}
+
+.mybox {
+    background-color: linen;
+    border-radius: 10px;
+    padding: 1em;
+}
+
+.inputbox {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.fly-in {
+    animation: fly-from-left 1s ease-out;
+}
+
+legend {
+  font-weight: 100;
+  
+}
+
+p {
+  font-weight: bold;
+}
+
+progress {
+  width: 400px;
+  height: 50px;
+  background-color: #eee;
+}
+
+progress::-webkit-progress-value {
+  background: pink;
+}
+
+@keyframes fly-from-left {
+    0% {
+      transform: translateX(-200%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }

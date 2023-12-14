@@ -57,10 +57,6 @@ function habitInput() {
   console.log(socket);
   socket.send("New Habit");
   createProgressBar();
-
-  // ws.send("uykfyufuu");
-  //broadcastEvent(getPlayerName(), {habit: newHabitEl.value});
-  // console.log('Explosion');
 }
 
 
@@ -213,15 +209,6 @@ function delay(milliseconds) {
     setTimeout(resolve, milliseconds);
   });
 }
-
-
-
-// function displayMsg(from, msg) {
-//   const chatText = document.querySelector('#player-messages');
-//   chatText.innerHTML = `<div>${msg} </div>`+ chatText.innerHTML;
-
-// }
-
 
 function displayMsg(cls, from, msg) {
   const chatText = document.querySelector('#player-messages');
