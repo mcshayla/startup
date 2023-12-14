@@ -85,7 +85,8 @@ secureApiRouter.use(async (req, res, next) => {
 
 
 //get progress
-secureApiRouter.get('/public', async (_req, res) => {
+secureApiRouter.
+get('/public', async (_req, res) => {
   const public = await DB.getProgress();  
   res.send(public);
 });
@@ -93,7 +94,7 @@ secureApiRouter.get('/public', async (_req, res) => {
 
 secureApiRouter.post('/public', async (req, res) => {
   const pub = {...req.body, ip: req.ip} ///not here?
-  await DB.addProgress(req.body)  ///without await
+  DB.addProgress(req.body)  ///without await
   const public = await DB.getProgress();
   res.send(public);
 });

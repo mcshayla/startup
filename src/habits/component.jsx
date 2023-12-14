@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import './habits.css';
+
+
 
 const MyComponent = (props) => {
   const userName = props.userName;
@@ -116,6 +119,7 @@ const MyComponent = (props) => {
     if (theName && !isNaN(streakValue)) {
   
       const publicData = JSON.parse(localStorage.getItem('publicData')) || [];
+      let data;
       try {
         const response = await fetch('/api/public', {
           method: 'POST',

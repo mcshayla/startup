@@ -20,6 +20,7 @@ export function Authenticated(props) {
         props.onLogout();
       });
   }
+  
 
   return (
     <div>
@@ -30,6 +31,7 @@ export function Authenticated(props) {
       <Button variant='secondary' onClick={() => logout()}>
         Logout
       </Button>
+      <div id="quote" className="quote-box bg-dark text-light"></div> 
     </div>
   );
 }

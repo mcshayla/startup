@@ -18,7 +18,7 @@ function App() {
       <BrowserRouter>
         <div className="body">
         <header className="container-fluid">
-        <h1>BECOMING! WITH YOUR HABITS<sup>&reg;</sup></h1>
+        <h1 className="font">BECOMING! WITH YOUR HABITS<sup>&reg;</sup></h1>
 
         <nav>
              <menu className='navbar-nav'>

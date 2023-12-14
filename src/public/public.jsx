@@ -23,10 +23,12 @@ export function Public() {
     const publicRows = [];
     if (publics.length) {
       for (const [i, pub] of publics.entries()) {
+        //const nameToShow = typeof pub.name === 'string' ? pub.name.split('@')[0] : 'Unknown';
+        const nameToShow = typeof pub.name === 'object' && pub.name.userName ? pub.name.userName : 'Unknown';
         publicRows.push(
           <tr key={i}>
             <td>{i}</td>
-            <td>{pub.name.split('@')[0]}</td>
+            <td>{nameToShow}</td>
             <td>{pub.habit}</td>
             <td>{pub.ratio}</td>
           </tr>
