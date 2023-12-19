@@ -575,5 +575,233 @@ Cookie: myAppCookie=tasty
 
 This allows the server to remember things like the language preference of the user, or the user's authentication credentials. A server can also use cookies to track, and share, everything that a user does. However, there is nothing inherently evil about cookies; the problem comes from web applications that use them as a means to violate a user's privacy or inappropriately monetize their data.
 
+## REACT
+React components allow you to modularize the functionality of your application. This allows the underlying code to directly represent the components that a user interacts with. It also enables code reuse as common application components often show up repeatedly.
+
+## The render function
+
+One of the primary purposes of a component is to generate the user interface. This is done with the component's `render` function. Whatever is returned from the `render` function is inserted into the component HTML element.
+
+As a simple example, a JSX file containing a React component element named `Demo` would cause React to load the `Demo` component, call the `render` function, and insert the result into the place of the `Demo` element.
+
+**JSX**
+
+```jsx
+<div>
+  Component: <Demo />
+</div>
+```
+
+Notice that `Demo` is not a valid HTML element. The transpiler will replace this tag with the resulting rendered HTML.
+
+**React component**
+
+```js
+function Demo() {
+  const who = 'world';
+  return <b>Hello {who}</b>;
+}
+```
+
+**Resulting HTML**
+
+```html
+<div>Component: <b>Hello world</b></div>
+```
+
+## Properties
+
+React components also allow you to pass information to them in the form of element properties. The component receives the properties in its constructor and then can display them when it renders.
+
+**JSX**
+
+```jsx
+<div>Component: <Demo who="Walke" /><div>
+```
+
+**React component**
+
+```jsx
+function Demo(props) {
+  return <b>Hello {props.who}</b>;
+}
+```
+
+**Resulting HTML**
+
+```html
+<div>Component: <b>Hello Walke</b></div>
+```
+
+## State
+
+In addition to properties, a component can have internal state. Component state is created by calling the `React.useState` hook function. The `useState` function returns a variable that contains the current state and a function to update the state. The following example creates a state variable called `clicked` and toggles the click state in the `updateClicked` function that gets called when the paragraph text is clicked.
+
+```jsx
+const Clicker = () => {
+  const [clicked, updateClicked] = React.useState(false);
+
+  const onClicked = (e) => {
+    updateClicked(!clicked);
+  };
+
+  return <p onClick={(e) => onClicked(e)}>clicked: {`${clicked}`}</p>;
+};
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Clicker />);
+```
+
+You should note that you can use JSX even without a function. A simple variable representing JSX will work anyplace you would otherwise provide a component.
+
+```jsx
+const hello = <div>Hello</div>;
+
+ReactDOM.render(hello, document.getElementById('root'));
+```
+
+## Class style components
+
+In addition to the preferred `function style` components demonstrated above, React also supports `class style` components. However, you should note that the React team is moving away from the class style representation, and for that reason you should probably not use it. With that said, you are likely to see class style components and so you should be aware of the syntax. Below is the equivalent class style component for the `Clicker` component that we created above.
+
+The major difference is that properties are loaded on the constructor and state is set using a `setState` function on the component object.
+
+```jsx
+class Clicker extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+    };
+  }
+  onClicked() {
+    this.setState({
+      clicked: !this.state.clicked,
+    });
+  }
+  render() {
+    return <p onClick={(e) => this.onClicked(e)}>clicked: {`${this.state.clicked}`}</p>;
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Clicker />);
+```
+
+## Reactivity
+
+A component's properties and state are used by the React framework to determine the reactivity of the interface. Reactivity controls how a component reacts to actions taken by the user or events that happen within the application. Whenever a component's state or properties change, the `render` function for the component and all of its dependent component `render` functions are called.
+
+
+## React hooks
+
+React hooks allow React function style components to be able to do everything that a class style component can do and more. Additionally, as new features are added to React they are including them as hooks. This makes function style components the preferred way of doing things in React. You have already seen one use of hooks to declare and update state in a function component with the `useState` hook.
+
+```jsx
+function Clicker({initialCount}) {
+  const [count, updateCount] = React.useState(initialCount);
+  return <div onClick={() => updateCount(count + 1)}>Click count: {count}</div>;
+}
+
+ReactDOM.render(<Clicker initialCount={3} />, document.getElementById('root'));
+```
+
+## useEffect hook
+
+The `useEffect` hook allows you to represent lifecycle events. For example, if you want to run a function every time the component completes rendering, you could do the following.
+
+```jsx
+function UseEffectHookDemo() {
+  React.useEffect(() => {
+    console.log('rendered');
+  });
+
+  return <div>useEffectExample</div>;
+}
+
+ReactDOM.render(<UseEffectHookDemo />, document.getElementById('root'));
+```
+
+You can also take action when the component cleans up by returning a cleanup function from the function registered with `useEffect`. In the following example, every time the component is clicked the state changes and so the component is rerendered. This causes both the cleanup function to be called in addition to the hook function. If the function was not rerendered then only the cleanup function would be called.
+
+```jsx
+function UseEffectHookDemo() {
+  const [count, updateCount] = React.useState(0);
+  React.useEffect(() => {
+    console.log('rendered');
+
+    return function cleanup() {
+      console.log('cleanup');
+    };
+  });
+
+  return <div onClick={() => updateCount(count + 1)}>useEffectExample {count}</div>;
+}
+
+ReactDOM.render(<UseEffectHookDemo />, document.getElementById('root'));
+```
+
+This is useful when you want to create side effects for things such as tracking when a component is displayed or hidden, or creating and disposing of resources.
+
+## Hook dependencies
+
+You can control what triggers a `useEffect` hook by specifying its dependencies. In the following example we have two state variables, but we only want the `useEffect` hook to be called when the component is initially called and when the first variable is clicked. To accomplish this you pass an array of dependencies as a second parameter to the `useEffect` call.
+
+```jsx
+function UseEffectHookDemo() {
+  const [count1, updateCount1] = React.useState(0);
+  const [count2, updateCount2] = React.useState(0);
+
+  React.useEffect(() => {
+    console.log(`count1 effect triggered ${count1}`);
+  }, [count1]);
+
+  return (
+    <ol>
+      <li onClick={() => updateCount1(count1 + 1)}>Item 1 - {count1}</li>
+      <li onClick={() => updateCount2(count2 + 1)}>Item 2 - {count2}</li>
+    </ol>
+  );
+}
+
+ReactDOM.render(<UseEffectHookDemo />, document.getElementById('root'));
+```
+
+## Router
+A web framework router provides essential functionality for single-page applications. With a multiple-webpage application the headers, footers, navigation, and common components must be either duplicated in each HTML page, or injected before the server sends the page to the browser. With a single page application, the browser only loads one HTML page and then JavaScript is used to manipulate the DOM and give it the appearance of multiple pages. The router defines the routes a user can take through the application, and automatically manipulates the DOM to display the appropriate framework components.
+
+React does not have a standard router package, and there are many that you can choose from. We will use [react-router-dom](https://www.npmjs.com/package/react-router-dom) Version 6. The simplified routing functionality of React-router-dom derives from the project [react-router](https://www.npmjs.com/package/react-router) for its core functionality. Do not confuse the two, or versions of react-router-dom before version 6, when reading tutorials and documentation.
+
+![React Router](routerExample.gif)
+
+A basic implementation of the router consists of a `BrowserRouter` component that encapsulates the entire application and controls the routing action. The `Link`, or `NavLink`, component captures user navigation events and modifies what is rendered by the `Routes` component by matching up the `to` and `path` attributes.
+
+```jsx
+// Inject the router into the application root DOM element
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  // BrowserRouter component that controls what is rendered
+  // NavLink component captures user navigation requests
+  // Routes component defines what component is routed to
+  <BrowserRouter>
+    <div className='app'>
+      <nav>
+        <NavLink to='/'>Home</Link>
+        <NavLink to='/about'>About</Link>
+        <NavLink to='/users'>Users</Link>
+      </nav>
+
+      <main>
+        <Routes>
+          <Route path='/' element={<Home />} exact />
+          <Route path='/about' element={<About />} />
+          <Route path='/users' element={<Users />} />
+          <Route path='*' element={<Navigate to='/' replace />} />
+        </Routes>
+      </main>
+    </div>
+  </BrowserRouter>
+);
+```
 
 
